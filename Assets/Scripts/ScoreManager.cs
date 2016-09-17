@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
@@ -7,17 +8,21 @@ public class ScoreManager : MonoBehaviour {
 
     public int currentScore;
     public int finalScore;
-    public int totalKids;
     public int currentKids;
+
+    public Text scoreText;
 
     public void Start()
     {
-        
+        currentKids = 0;
+        currentScore = 0;
+
+        scoreText.text = "Score: " + currentScore.ToString();
     }
 
     public void Update()
     {
-        currentScore = (currentKids * CURRENT_SCORE_MODIFIER);
+        scoreText.text = "Score: " + GetCurrentScore().ToString();
     }
 
     public void CalculateFinalScore()
@@ -27,11 +32,26 @@ public class ScoreManager : MonoBehaviour {
 
     public int GetCurrentScore()
     {
-        return currentScore;
+        return (currentKids * CURRENT_SCORE_MODIFIER);
+    }
+
+    public int GetCurrentKids()
+    {
+        return currentKids;
     }
 
     public int GetFinalScore()
     {
         return finalScore;
+    }
+
+    public void kidCountAdd()
+    {
+        ++currentKids;
+    }
+
+    public void SetKidCount(int i)
+    {
+        currentKids = i;
     }
 }

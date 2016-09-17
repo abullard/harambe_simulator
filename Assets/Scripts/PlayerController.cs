@@ -2,22 +2,23 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+    public ScoreManager scoreManager;
 
     public float speed;
     public bool isFlipped;
     public Sprite hold;
 
-    private int count;
     private bool carryingChild = false;
     private GameObject child;
     private SpriteRenderer spRen;
     private Sprite walk;
 
     public void Start() {
-        count = 0;
         isFlipped = false;
         spRen = GetComponent<SpriteRenderer>();
         walk = spRen.sprite;
+
+        scoreManager = new ScoreManager();
     }
 
     public void Update() {
@@ -148,8 +149,9 @@ public class PlayerController : MonoBehaviour {
         }
         if(other.gameObject.CompareTag("Den_door")) {
             if(carryingChild) {
-                count++;
-                print(count);
+                int currentKid = scoreManager.GetCurrentKids();
+                scoreManager.kidCountAdd(); 
+                print(scoreManager.GetCurrentKids());
                 Destroy(child);
                 carryingChild = false;
                 spRen.sprite = walk;
