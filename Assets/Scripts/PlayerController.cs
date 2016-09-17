@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public bool isFlipped;
     public Sprite hold;
+    public Rigidbody2D rb2d;
+
+    Animator animator;
 
     private int count;
     private bool carryingChild = false;
@@ -13,19 +16,28 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spRen;
     private Sprite walk;
 
+    const int STATE_IDLE = 0;
+    const int STATE_WALK = 1;
+
+    int _currentAnimationState = STATE_IDLE;
+
     public void Start() {
         count = 0;
         isFlipped = false;
+        rb2d = GetComponent<Rigidbody2D>();
         spRen = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         walk = spRen.sprite;
     }
-
+    
+    // Movement
     public void Update() {
 
         if(!carryingChild) {
             //BEGIN MOVEMENT WITHOUT CHILD
             if (Input.GetKey(KeyCode.W))
             {
+                changeState(STATE_WALK);
                 transform.position += Vector3.up * speed * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.A))
@@ -35,12 +47,13 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = true;
                 }
+                changeState(STATE_WALK);
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.S))
             {
+                changeState(STATE_WALK);
                 transform.position += Vector3.down * speed * Time.deltaTime;
-
             }
             if (Input.GetKey(KeyCode.D))
             {
@@ -49,12 +62,14 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = false;
                 }
+                changeState(STATE_WALK);
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
         } else if(carryingChild) {
             //BEGIN MOVEMENT WITH CHILD
             if (Input.GetKey(KeyCode.W))
             {
+                changeState(STATE_WALK);
                 transform.position += Vector3.up * speed * Time.deltaTime;
                 child.transform.position = transform.position;
                 if (!isFlipped)
@@ -75,6 +90,7 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = true;
                 }
+                changeState(STATE_WALK);
                 transform.position += Vector3.left * speed * Time.deltaTime;    
                 if (!isFlipped)
                 {
@@ -89,6 +105,7 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKey(KeyCode.S))
             {
+                changeState(STATE_WALK);
                 transform.position += Vector3.down * speed * Time.deltaTime;
                 child.transform.position = transform.position;
                 if (!isFlipped)
@@ -109,6 +126,7 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = false;
                 }
+                changeState(STATE_WALK);
                 transform.position += Vector3.right * speed * Time.deltaTime;
                 if (!isFlipped)
                 {
@@ -124,7 +142,37 @@ public class PlayerController : MonoBehaviour {
             }
         }
     } 
+
+    void LateUpdate() {
+        if (rb2d.velocity.magnitude == 0.0)
+        {
+            changeState(STATE_IDLE);
+        }
+    }
    
+    // Changed the players animation state
+    public void changeState(int state)
+    {
+        if (_currentAnimationState == state)
+            return;
+        if (!animator)
+        {
+            Debug.Log("asdf");
+
+        }
+        switch (state)
+        {
+            case STATE_WALK:
+                animator.SetInteger("state", STATE_WALK);
+                break;
+            case STATE_IDLE:
+                animator.SetInteger("state", STATE_IDLE);
+                break;
+        }
+
+        _currentAnimationState = state;
+    }
+
     //Used to determine if Harambe is in contact with a child or with his den
     void OnTriggerStay2D(Collider2D other)
     {
