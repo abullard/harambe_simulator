@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Main.unity
+=======
+- path: Assets/Scenes/Tylers Work.unity
+>>>>>>> 92f8c667af6e95434f6e2ab618d40a70c2a3ccda
   isLoaded: 1
   isActive: 1
