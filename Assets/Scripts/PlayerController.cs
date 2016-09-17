@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+    public ScoreManager scoreManager;
 
     public float speed;
     public bool isFlipped;
@@ -17,11 +18,12 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
 
     public void Start() {
-        count = 0;
         isFlipped = false;
         spRen = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         walk = spRen.sprite;
+
+        scoreManager = new ScoreManager();
     }
 
     public void Update() {
@@ -156,6 +158,9 @@ public class PlayerController : MonoBehaviour {
         }
         if(other.gameObject.CompareTag("Den_door")) {
             if(carryingChild) {
+                int currentKid = scoreManager.GetCurrentKids();
+                scoreManager.kidCountAdd(); 
+                print(scoreManager.GetCurrentKids());
                 Destroy(child);
                 // ScoreManager scoreManager = new ScoreManager();
                 // scoreManager.child = scoreManager + 1;
