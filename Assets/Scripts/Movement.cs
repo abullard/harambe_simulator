@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Movement : MonoBehaviour
 {
+
     public float speed;
     public bool isFlipped;
 
     public void Start()
     {
-        speed = 1.0f;
         isFlipped = false;
     }
 
@@ -44,7 +44,6 @@ public class Movement : MonoBehaviour
 
                 isFlipped = false;
             }
-
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
     }
