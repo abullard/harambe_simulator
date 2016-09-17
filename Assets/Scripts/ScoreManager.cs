@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour {
     public int currentKids;
 
     public Text scoreText;
+    public Text timeText;
 
     public void Start()
     {
@@ -18,6 +19,11 @@ public class ScoreManager : MonoBehaviour {
         currentScore = 0;
 
         scoreText.text = "Score: " + GetCurrentScore().ToString();
+    }
+
+    public void Update()
+    {
+        
     }
 
     public void UpdateScore()
