@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+    public ScoreManager scoreManager;
 
     public float speed;
     public bool isFlipped;
@@ -10,11 +11,14 @@ public class PlayerController : MonoBehaviour {
 
     Animator animator;
 
+    private GameController gc = new GameController();    
+    private Spawn sp = new Spawn();
     private int count;
     private bool carryingChild = false;
     private GameObject child;
     private SpriteRenderer spRen;
     private Sprite walk;
+    private Rigidbody2D rb2d;
 
     const int STATE_IDLE = 0;
     const int STATE_WALK = 1;
@@ -22,11 +26,14 @@ public class PlayerController : MonoBehaviour {
     int _currentAnimationState = STATE_IDLE;
 
     public void Start() {
-        count = 0;
         isFlipped = false;
         rb2d = GetComponent<Rigidbody2D>();
         spRen = GetComponent<SpriteRenderer>();
+<<<<<<< HEAD
         animator = GetComponent<Animator>();
+=======
+        rb2d = GetComponent<Rigidbody2D>();
+>>>>>>> c38b336ecf90562f6d39827c00eac0c937c26e84
         walk = spRen.sprite;
     }
     
@@ -179,6 +186,10 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.CompareTag("Child"))
         {
             if(Input.GetKey(KeyCode.E) && !carryingChild) {
+                if(count == 0)
+                {
+                    gc.startShooting();
+                }
                 child = other.gameObject;
                 child.transform.Rotate(Vector3.forward * 180);
                 child.transform.position = transform.position;
@@ -196,11 +207,13 @@ public class PlayerController : MonoBehaviour {
         }
         if(other.gameObject.CompareTag("Den_door")) {
             if(carryingChild) {
-                count++;
-                print(count);
+                int currentKid = scoreManager.GetCurrentKids();
+                scoreManager.kidCountAdd(); 
+                print(scoreManager.GetCurrentKids());
                 Destroy(child);
                 carryingChild = false;
                 spRen.sprite = walk;
+                sp.Respawn();
             }
         }
     }
