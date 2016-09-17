@@ -17,10 +17,10 @@ public class ScoreManager : MonoBehaviour {
         currentKids = 0;
         currentScore = 0;
 
-        scoreText.text = "Score: " + currentScore.ToString();
+        scoreText.text = "Score: " + GetCurrentScore().ToString();
     }
 
-    public void Update()
+    public void UpdateScore()
     {
         scoreText.text = "Score: " + GetCurrentScore().ToString();
     }
@@ -47,7 +47,8 @@ public class ScoreManager : MonoBehaviour {
 
     public void kidCountAdd()
     {
-        ++currentKids;
+        currentKids++;
+        UpdateScore();
     }
 
     public void SetKidCount(int i)

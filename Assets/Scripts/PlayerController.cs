@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour {
         spRen = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         walk = spRen.sprite;
-
-        scoreManager = new ScoreManager();
     }
 
     public void Update() {
@@ -162,8 +160,6 @@ public class PlayerController : MonoBehaviour {
                 scoreManager.kidCountAdd(); 
                 print(scoreManager.GetCurrentKids());
                 Destroy(child);
-                // ScoreManager scoreManager = new ScoreManager();
-                // scoreManager.child = scoreManager + 1;
                 carryingChild = false;
                 spRen.sprite = walk;
                 sp.Respawn();
