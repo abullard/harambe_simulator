@@ -7,16 +7,20 @@ public class PlayerController : MonoBehaviour {
     public bool isFlipped;
     public Sprite hold;
 
+    private GameController gc = new GameController();
+    private Spawn sp = new Spawn();
     private int count;
     private bool carryingChild = false;
     private GameObject child;
     private SpriteRenderer spRen;
     private Sprite walk;
+    private Rigidbody2D rb2d;
 
     public void Start() {
         count = 0;
         isFlipped = false;
         spRen = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
         walk = spRen.sprite;
     }
 
@@ -131,6 +135,10 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.CompareTag("Child"))
         {
             if(Input.GetKey(KeyCode.E) && !carryingChild) {
+                if(count == 0)
+                {
+                    gc.startShooting();
+                }
                 child = other.gameObject;
                 child.transform.Rotate(Vector3.forward * 180);
                 child.transform.position = transform.position;
@@ -148,11 +156,12 @@ public class PlayerController : MonoBehaviour {
         }
         if(other.gameObject.CompareTag("Den_door")) {
             if(carryingChild) {
-                count++;
-                print(count);
                 Destroy(child);
+                // ScoreManager scoreManager = new ScoreManager();
+                // scoreManager.child = scoreManager + 1;
                 carryingChild = false;
                 spRen.sprite = walk;
+                sp.Respawn();
             }
         }
     }
