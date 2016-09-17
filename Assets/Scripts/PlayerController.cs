@@ -158,7 +158,6 @@ public class PlayerController : MonoBehaviour {
             if(carryingChild) {
                 int currentKid = scoreManager.GetCurrentKids();
                 scoreManager.kidCountAdd(); 
-                print(scoreManager.GetCurrentKids());
                 Destroy(child);
                 carryingChild = false;
                 spRen.sprite = walk;
