@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     public bool isFlipped;
     public Sprite hold;
 
-    private GameController gc = new GameController();
+    private GameController gc = new GameController();    
     private Spawn sp = new Spawn();
     private int count;
     private bool carryingChild = false;
