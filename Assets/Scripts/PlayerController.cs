@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public bool isFlipped;
     public Sprite hold;
-    public Rigidbody2D rb2d;
 
     Animator animator;
 
@@ -27,13 +26,9 @@ public class PlayerController : MonoBehaviour {
 
     public void Start() {
         isFlipped = false;
-        rb2d = GetComponent<Rigidbody2D>();
         spRen = GetComponent<SpriteRenderer>();
-<<<<<<< HEAD
         animator = GetComponent<Animator>();
-=======
         rb2d = GetComponent<Rigidbody2D>();
->>>>>>> c38b336ecf90562f6d39827c00eac0c937c26e84
         walk = spRen.sprite;
     }
     
