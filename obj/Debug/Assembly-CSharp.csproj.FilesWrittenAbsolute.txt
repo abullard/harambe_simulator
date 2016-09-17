@@ -1,0 +1,17 @@
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/UnityEngine.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/UnityEditor.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Mono.Cecil.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Unity.DataContract.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/tylerjaacks/Desktop/Harambe Simulator/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/obj/Debug/Assembly-CSharp.dll
+/Users/tylerjaacks/Desktop/Harambe Simulator/obj/Debug/Assembly-CSharp.dll.mdb
