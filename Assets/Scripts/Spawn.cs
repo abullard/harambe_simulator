@@ -39,8 +39,6 @@ public class Spawn : MonoBehaviour
             }
 
             spawnPoint = GameObject.Find("Spawn" + spawnNum);
-            print("Spawn" + spawnNum);
-            print(spawnPoint);
 
             temp = spawnNum;
 

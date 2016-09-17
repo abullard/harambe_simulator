@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public bool isFlipped;
     public Sprite hold;
+<<<<<<< HEAD
+=======
+    //public Rigidbody2D rb2d;
+>>>>>>> 9686cc5e81ad922a003f5fb3d56c02e255313895
 
     Animator animator;
 
@@ -28,7 +32,10 @@ public class PlayerController : MonoBehaviour {
         isFlipped = false;
         spRen = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+<<<<<<< HEAD
         rb2d = GetComponent<Rigidbody2D>();
+=======
+>>>>>>> 9686cc5e81ad922a003f5fb3d56c02e255313895
         walk = spRen.sprite;
     }
     
@@ -204,7 +211,6 @@ public class PlayerController : MonoBehaviour {
             if(carryingChild) {
                 int currentKid = scoreManager.GetCurrentKids();
                 scoreManager.kidCountAdd(); 
-                print(scoreManager.GetCurrentKids());
                 Destroy(child);
                 carryingChild = false;
                 spRen.sprite = walk;
