@@ -6,56 +6,25 @@ public class HealthManager : MonoBehaviour
 {
 	public const int baseDamage = 25;
 
-	public int currentHealth;
+    public int currentHealth = 25;
 	public bool isAlive;
 
 	public Text healthText;
 
     public ScoreManager scoreManager;
 
-	void Start () 
+	public void TakeDamage()
 	{
-		currentHealth = 100;
-		isAlive = true;
+        Application.LoadLevel("FailScreen");
+    }
 
-		healthText.text = "Health: " + GetCurrentHealth().ToString();
-	}
-	
-	void Update () 
-	{
-		healthText.text = "Health: " + GetCurrentHealth().ToString();
-
-		if (isAlive != true)
-		{
-			// Stop Timer
-			Application.LoadLevel("FailScreen");
-		}
-	}
-
-	void TakeDamage()
-	{
-		if (currentHealth < 25)
-		{
-			currentHealth = 0;
-			isAlive = false;
-
-            // End Timer
-
-		}
-
-		else
-		{
-			currentHealth = currentHealth - baseDamage;
-		}
-	}
-
-	bool GetIsAlive()
-	{
-		return isAlive;
-	}
-
-	int GetCurrentHealth()
+    public int GetCurrentHealth()
 	{
 		return currentHealth;
 	}
+
+    public bool GetIsAlive()
+    {
+        return isAlive;
+    }
 }

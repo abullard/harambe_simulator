@@ -4,17 +4,13 @@ using System.Collections;
 using System.Threading;
 
 public class ScoreManager : MonoBehaviour {
-    public const int FINAL_SCORE_MODIFIER = 1000000;
-    public const int CURRENT_SCORE_MODIFIER = 1000;
+    public const int CURRENT_SCORE_MODIFER = 10000;
 
     public int currentScore;
-    public int finalScore;
     public int currentKids;
 
     public Text scoreText;
-    public Text timeText;
-
-    Timer timer;
+    int lifeCount = 0;
 
     public void Start()
     {
@@ -26,22 +22,12 @@ public class ScoreManager : MonoBehaviour {
 
     public void Update()
     {
-        // Start Timer
-    }
-
-    public void UpdateScore()
-    {
         scoreText.text = "Score: " + GetCurrentScore().ToString();
-    }
-
-    public void CalculateFinalScore()
-    {
-        finalScore = currentScore * FINAL_SCORE_MODIFIER;
     }
 
     public int GetCurrentScore()
     {
-        return (currentKids * CURRENT_SCORE_MODIFIER);
+        return (currentKids * CURRENT_SCORE_MODIFER);
     }
 
     public int GetCurrentKids()
@@ -49,21 +35,17 @@ public class ScoreManager : MonoBehaviour {
         return currentKids;
     }
 
-    public int GetFinalScore()
-    {
-        return finalScore;
-    }
-
     public void kidCountAdd()
     {
         currentKids++;
-        UpdateScore();
     }
 
-    public void SetKidCount(int i)
+    public void Hit()
     {
-        currentKids = i;
-    }
+        lifeCount += 1;
 
-    // Method Get
+        if (lifeCount > 3)
+            Application.LoadLevel("FailScreen");
+
+    }
 }

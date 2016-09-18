@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-    public Sprite gun;
     public Sprite holdingGun;
     private Sprite idle;
     private GameObject bullet;
     private SpriteRenderer spRen;
+    private System.Random rand = new System.Random();
+    private GameObject[] go;
+    private float timeBetweenAttacks = 0.5f;
+    private bool attack = false;
+
+    public float timer;
 
     void Start()
     {
@@ -15,23 +20,26 @@ public class Enemy : MonoBehaviour {
         idle = spRen.sprite;
     }
 
-    void shoot()
+    void Update()
     {
-        bullet.transform.position = transform.position;
+        timer += Time.deltaTime;
+        if (attack && timer >= timeBetweenAttacks)
+        {
+            int num = rand.Next(0, 5);
+            bullet = (GameObject)Instantiate(Resources.Load("Bullet"));
+            bullet.transform.position = go[num].transform.position;
+            timer = 0;
+        }
     }
 
-    //change sprite
-    //attach gun
-    //fire from 1 person, every second, toward harambe
-    public void Attack()
+    public void AttackStance(GameObject[] array)
     {
-        Debug.Log(holdingGun);
+        go = array;
         spRen.sprite = holdingGun;
-        System.Threading.Thread.Sleep(3000);
-        bullet = (GameObject)Instantiate(Resources.Load("Bullet"));
-        System.Threading.Thread.Sleep(1000);
-        shoot();
-
+        GameObject gun = (GameObject)Instantiate(Resources.Load("SniperRifle"));
+        gun.transform.position = transform.position;
+        gun.transform.Rotate(Vector3.back * 50);
+        attack = true;
     }
 
 }

@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
     public ScoreManager scoreManager;
 
+    private int lifeCount = 0;
     public float speed;
     public bool isFlipped;
     public Sprite hold;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spRen;
     private Sprite walk;
     private Rigidbody2D rb2d;
+   
 
     const int STATE_IDLE = 0;
     const int STATE_WALK = 1;
@@ -157,7 +159,9 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-   
+
+
+    
     // Changed the players animation state
     public void changeState(int state)
     {
@@ -209,6 +213,7 @@ public class PlayerController : MonoBehaviour {
                     gc.startShooting();
                 }
                 spRen.sprite = hold;
+                count++;
             }
         }
         if(other.gameObject.CompareTag("Den_door")) {
@@ -230,4 +235,6 @@ public class PlayerController : MonoBehaviour {
         scale.x *= -1;
         transform.localScale = scale;
     }
+
+
 }

@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FailScreenManager : MonoBehaviour
 {
-	private double time;
 	private int score;
 
-	private ScoreManager scoreManager; 
+	public ScoreManager scoreManager;
 
-	public void Start()
-	{
-		time = 0;
+    public Text scoreText;
 
-		score = scoreManager.GetFinalScore();
-	}
-
-    public void Update()
+    public void ChangeScene(string sceneName)
     {
-        
+        Application.LoadLevel(sceneName);
     }
 }
