@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Threading;
 
 public class ScoreManager : MonoBehaviour {
     public const int FINAL_SCORE_MODIFIER = 1000000;
@@ -11,6 +12,9 @@ public class ScoreManager : MonoBehaviour {
     public int currentKids;
 
     public Text scoreText;
+    public Text timeText;
+
+    Timer timer;
 
     public void Start()
     {
@@ -18,6 +22,11 @@ public class ScoreManager : MonoBehaviour {
         currentScore = 0;
 
         scoreText.text = "Score: " + GetCurrentScore().ToString();
+    }
+
+    public void Update()
+    {
+        // Start Timer
     }
 
     public void UpdateScore()
@@ -55,4 +64,6 @@ public class ScoreManager : MonoBehaviour {
     {
         currentKids = i;
     }
+
+    // Method Get
 }

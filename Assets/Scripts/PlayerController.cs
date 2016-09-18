@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 
     const int STATE_IDLE = 0;
     const int STATE_WALK = 1;
+    const int STATE_GRAB = 2;
+    const int STATE_GRABidle = 3;
 
     int _currentAnimationState = STATE_IDLE;
 
@@ -36,12 +38,12 @@ public class PlayerController : MonoBehaviour {
 
         if(!carryingChild) {
             //BEGIN MOVEMENT WITHOUT CHILD
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) && !carryingChild)
             {
                 changeState(STATE_WALK);
                 transform.position += Vector3.up * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && !carryingChild)
             {
                 if (!isFlipped)
                 {
@@ -51,12 +53,12 @@ public class PlayerController : MonoBehaviour {
                 changeState(STATE_WALK);
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && !carryingChild)
             {
                 changeState(STATE_WALK);
                 transform.position += Vector3.down * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && !carryingChild)
             {
                 if (isFlipped)
                 {
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour {
             //BEGIN MOVEMENT WITH CHILD
             if (Input.GetKey(KeyCode.W))
             {
-                changeState(STATE_WALK);
+                changeState(STATE_GRAB);
                 transform.position += Vector3.up * speed * Time.deltaTime;
                 child.transform.position = transform.position;
                 if (!isFlipped)
@@ -91,7 +93,7 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = true;
                 }
-                changeState(STATE_WALK);
+                changeState(STATE_GRAB);
                 transform.position += Vector3.left * speed * Time.deltaTime;    
                 if (!isFlipped)
                 {
@@ -106,7 +108,7 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKey(KeyCode.S))
             {
-                changeState(STATE_WALK);
+                changeState(STATE_GRAB);
                 transform.position += Vector3.down * speed * Time.deltaTime;
                 child.transform.position = transform.position;
                 if (!isFlipped)
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour {
                     Flip();
                     isFlipped = false;
                 }
-                changeState(STATE_WALK);
+                changeState(STATE_GRAB);
                 transform.position += Vector3.right * speed * Time.deltaTime;
                 if (!isFlipped)
                 {
@@ -145,10 +147,15 @@ public class PlayerController : MonoBehaviour {
     } 
 
     void LateUpdate() {
-        if (rb2d.velocity.magnitude == 0.0)
+        if (rb2d.velocity.magnitude == 0.0 && !carryingChild)
         {
             changeState(STATE_IDLE);
         }
+        if(rb2d.velocity.magnitude == 0.0 && carryingChild)
+        {
+            changeState(STATE_GRABidle);
+        }
+
     }
    
     // Changed the players animation state
@@ -167,7 +174,13 @@ public class PlayerController : MonoBehaviour {
                 animator.SetInteger("state", STATE_WALK);
                 break;
             case STATE_IDLE:
-                animator.SetInteger("state", STATE_IDLE);
+                    animator.SetInteger("state", STATE_IDLE);
+                    break;
+            case STATE_GRAB:
+                animator.SetInteger("state", STATE_GRAB);
+                break;
+            case STATE_GRABidle:
+                animator.SetInteger("state", STATE_GRABidle);
                 break;
         }
 
