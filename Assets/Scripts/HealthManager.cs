@@ -10,7 +10,8 @@ public class HealthManager : MonoBehaviour
 	public bool isAlive;
 
 	public Text healthText;
-	public Text TimerText;
+
+    public ScoreManager scoreManager;
 
 	void Start () 
 	{
@@ -37,6 +38,9 @@ public class HealthManager : MonoBehaviour
 		{
 			currentHealth = 0;
 			isAlive = false;
+
+            // End Timer
+
 		}
 
 		else

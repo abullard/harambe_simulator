@@ -14,4 +14,9 @@ public class FailScreenManager : MonoBehaviour
 
 		score = scoreManager.GetFinalScore();
 	}
+
+    public void Update()
+    {
+        
+    }
 }
