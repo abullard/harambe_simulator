@@ -5,17 +5,17 @@ public class Enemy : MonoBehaviour {
 
     public Sprite gun;
     public Sprite holdingGun;
-    public Sprite bullet;
+    public GameObject bullet;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+    void LateUpdate()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            bullet = (GameObject)Instantiate(Resources.Load("Bullet"));
+            Debug.Log(bullet);
+            bullet.transform.position = transform.position;
+        }
+        
+    }
 
 }
