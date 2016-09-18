@@ -10,6 +10,7 @@ public class HealthManager : MonoBehaviour
 	public bool isAlive;
 
 	public Text healthText;
+	public Text TimerText;
 
 	void Start () 
 	{
@@ -22,6 +23,12 @@ public class HealthManager : MonoBehaviour
 	void Update () 
 	{
 		healthText.text = "Health: " + GetCurrentHealth().ToString();
+
+		if (isAlive != true)
+		{
+			// Stop Timer
+			Application.LoadLevel("FailScreen");
+		}
 	}
 
 	void TakeDamage()
