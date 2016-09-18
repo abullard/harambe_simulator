@@ -180,10 +180,6 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.CompareTag("Child"))
         {
             if(Input.GetKey(KeyCode.E) && !carryingChild) {
-                if(count == 0)
-                {
-                    gc.startShooting();
-                }
                 child = other.gameObject;
                 child.transform.Rotate(Vector3.forward * 180);
                 child.transform.position = transform.position;
@@ -196,6 +192,9 @@ public class PlayerController : MonoBehaviour {
                 }
                 
                 carryingChild = true;
+                if (count == 0) {
+                    gc.startShooting();
+                }
                 spRen.sprite = hold;
             }
         }
