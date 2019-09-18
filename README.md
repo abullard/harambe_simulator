@@ -4,3 +4,8 @@
 Download .exe
 -------------
 https://www.dropbox.com/s/0t4dlikaolksyoj/ZooSimulator.zip?dl=0
+
+## In-Game Screenshots
+***
+![1](https://imgur.com/Ukx2Y1g)
+![2](https://imgur.com/JwM4koH)
