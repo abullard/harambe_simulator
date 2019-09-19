@@ -1,5 +1,5 @@
-# harambeSimulator
-2d pixel game, Harambe Simulator. Made with Unity
+# Zoo Simulator
+2d pixel game, Simulates Harambe situation. Made with Unity
 
 Download .exe
 -------------
